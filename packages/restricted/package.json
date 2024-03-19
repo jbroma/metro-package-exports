@@ -1,0 +1,11 @@
+{
+  "name": "@metro-exports/restricted",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./features/*.js": "./features/*.js",
+    "./features/internal/*.js": null
+  }
+}
