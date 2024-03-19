@@ -1,16 +1,22 @@
 # Metro Package Exports
 
-This repository shows 2 edge cases where `metro-resolver` behaves different than both Node.js `require.resolve` and `enhanced-resolve`
+This repository demonstrates two edge cases where `metro-resolver` behaves differently from both Node.js's `require.resolve` and `enhanced-resolve` from Webpack.
 
 ## Setup
 
-1. Install dependencies via `yarn` v1 (classic)
-2. Make test scripts inside of `tester` directory executable using `chmod +x`
-3. Run `test-root-shorthand.sh` & `test-restricted.sh`
+To get started with this project, follow these steps:
+
+1. Install dependencies via `yarn` v1 (classic).
+2. Make the test scripts within the `tester` directory executable by running `chmod +x` on them.
+3. Execute `test-root-shorthand.sh` & `test-restricted.sh` scripts.
 
 ## Description
 
-1. Root Array shorthand implementation differs from Node.js / Webpack's `enhanced-resolve` spec:
+The cases outlined below highlight the differences in resolving mechanisms between `metro-resolver` and the other resolvers.
+
+### 1. Root Array Shorthand
+
+For the Root Array shorthand, the implementation differs when compared to Node.js or Webpack's `enhanced-resolve` specification:
 
 ```json
 {
@@ -19,15 +25,17 @@ This repository shows 2 edge cases where `metro-resolver` behaves different than
 }
 ```
 
-### Results:
+#### Results:
 
-Import specifier: `@metro-package-exports/root-shorthand`
+For the import specifier: `@metro-package-exports/root-shorthand`
 
-- node.js -> resolves to `index.js` inside of `@metro-package-exports/root-shorthand`
-- enhanced-resolve -> resolves to `index.js` inside of `@metro-package-exports/root-shorthand`
-- metro-resolver -> fails to resolve, fallbacks to file resolution and resolves to `@metro-package-exports/root-shorthand` directory
+- **Node.js**: Resolves to `index.js` inside of `@metro-package-exports/root-shorthand`.
+- **enhanced-resolve**: Identically resolves to `index.js` within `@metro-package-exports/root-shorthand`.
+- **metro-resolver**: Fails to resolve, falling back to file resolution and ultimately resolving to the `@metro-package-exports/root-shorthand` directory itself.
 
-2. Subpath patterns in `exports` matching import specifier
+### 2. Subpath Patterns in `exports`
+
+When using subpath patterns in `exports` to match the import specifier, the behaviors observed are as follows:
 
 ```json
 {
@@ -40,10 +48,10 @@ Import specifier: `@metro-package-exports/root-shorthand`
 }
 ```
 
-### Results:
+#### Results:
 
-Import specifier: `@metro-package-exports/restricted/features/internal/b.js`
+For the import specifier: `@metro-package-exports/restricted/features/internal/b.js`
 
-- node.js -> fails to resolve, `b.js` is not exported from `@metro-package-exports/restricted`
-- enhanced-resolve -> fails to resolve, `b.js` is not exported from `@metro-package-exports/restricted`
-- metro-resolver -> resolves to `@metro-package-exports/restricted/features/internal/b.js` without falling back to file resolution
+- **Node.js**: Fails to resolve as `b.js` is not exported from `@metro-package-exports/restricted`.
+- **enhanced-resolve**: Also fails to resolve for the same reason as Node.js.
+- **metro-resolver**: Successfully resolves to `@metro-package-exports/restricted/features/internal/b.js` without falling back to file resolution.
