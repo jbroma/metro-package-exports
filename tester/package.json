@@ -1,11 +1,11 @@
 {
-  "name": "@metro-exports/tester",
+  "name": "@metro-package-exports/tester",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@metro-exports/restricted": "*",
-    "@metro-exports/root-shorthand": "*"
+    "@metro-package-exports/restricted": "*",
+    "@metro-package-exports/root-shorthand": "*"
   },
   "devDependencies": {
     "enhanced-resolve": "^5.16.0",

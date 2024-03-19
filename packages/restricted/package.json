@@ -1,5 +1,5 @@
 {
-  "name": "@metro-exports/restricted",
+  "name": "@metro-package-exports/restricted",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

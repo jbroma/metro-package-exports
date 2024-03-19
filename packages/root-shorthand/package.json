@@ -1,5 +1,5 @@
 {
-  "name": "@metro-exports/root-shorthand",
+  "name": "@metro-package-exports/root-shorthand",
   "version": "1.0.0",
   "main": "index.js",
   "exports": [
