@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo 'From Node.js:'
 echo
 node -e "console.log(require.resolve('@metro-package-exports/root-shorthand'))"
